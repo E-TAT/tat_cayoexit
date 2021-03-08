@@ -1,0 +1,21 @@
+AddEventHandler('esx:playerDropped', function(source, cb)
+    local xPlayer = ESX.GetPlayerFromId(source)
+
+	MySQL.Async.fetchScalar('SELECT position FROM users WHERE identifier = @identifier', {
+		['@identifier'] = xPlayer.identifier
+	}, function(position)
+
+        if position then
+			print(('[cayo perico] [^2INFO^7] "%s" exited from cayo perico'):format(xPlayer.identifier))
+		end
+
+        cb(position)
+    end)
+end)
+
+AddEventHandler('esx:playerOnSpawn', function()
+    if Config.ExitRadius then
+		Config.ExitRadius = true
+		TriggerClientEvent('esx:onPlayerSpawn')
+	end
+end)
