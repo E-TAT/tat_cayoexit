@@ -1,7 +1,11 @@
+ESX = nil
+TriggerEvent('esx:getSharedObject', function(obj) 
+ESX = obj end)
+
 AddEventHandler('esx:playerDropped', function(source, cb, GetDistanceBetweenCoords)
     local xPlayer = ESX.GetPlayerFromId(source)
 
-	MySQL.Async.fetchScalar('SELECT position FROM users WHERE identifier = @identifier', {
+	MySQL.Async.fetchAll('SELECT position FROM users WHERE identifier = @identifier', {
 		['@identifier'] = xPlayer.identifier
 	}, function(position)
 
