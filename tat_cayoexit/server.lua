@@ -1,4 +1,4 @@
-AddEventHandler('esx:playerDropped', function(source, cb)
+AddEventHandler('esx:playerDropped', function(source, cb, GetDistanceBetweenCoords)
     local xPlayer = ESX.GetPlayerFromId(source)
 
 	MySQL.Async.fetchScalar('SELECT position FROM users WHERE identifier = @identifier', {
