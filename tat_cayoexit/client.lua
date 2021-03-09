@@ -56,8 +56,8 @@ Citizen.CreateThread(function()
 		local x,y,z = table.unpack(GetEntityCoords(player, true))
 		local dist = Vdist(zones[closestZone].x, zones[closestZone].y, zones[closestZone].z, x, y, z)
 	
-		if dist <= 50.0 then  ------------------------------------------------------------------------------ Here you can change the RADIUS of the Safe Zone. Remember, whatever you put here will DOUBLE because 
-			if not notifIn then																			  -- it is a sphere. So 50 will actually result in a diameter of 100. I assume it is meters. No clue to be honest.
+		if dist <= 50.0 then  
+			if not notifIn then																			  
 				NetworkSetFriendlyFireOption(false)
 				ClearPlayerWantedLevel(PlayerId())
 				TriggerEvent("pNotify:SendNotification",{
