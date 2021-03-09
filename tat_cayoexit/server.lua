@@ -17,9 +17,3 @@ AddEventHandler('esx:playerDropped', function(source, cb, GetDistanceBetweenCoor
     end)
 end)
 
-AddEventHandler('esx:playerOnSpawn', function()
-    if Config.ExitRadius then
-		Config.ExitRadius = true
-		TriggerClientEvent('esx:onPlayerSpawn')
-	end
-end)
