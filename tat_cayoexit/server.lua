@@ -2,18 +2,13 @@ ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) 
 ESX = obj end)
 
-AddEventHandler('esx:playerDropped', function(source, cb, GetDistanceBetweenCoords)
+AddEventHandler('esx:playerDropped', function()
     local xPlayer = ESX.GetPlayerFromId(source)
-
-	MySQL.Async.fetchAll('SELECT position FROM users WHERE identifier = @identifier', {
-		['@identifier'] = xPlayer.identifier
-	}, function(position)
-
-        if position then
-			print(('[cayo perico] [^2INFO^7] "%s" exited from cayo perico'):format(xPlayer.identifier))
-		end
-
-        cb(position)
-    end)
+    local targetcoord = vector3(1847.916015625,3675.8190917968,33.767009735108)
+	local updateCoords = vector3(1688.43811035156,-1073.62536621094,13.1521873474121)
+    local Coords = GetEntityCoords(GetPlayerPed(source))
+    local distance = #(Coords.xy - targetcoord.xy)
+    if distance < 200.0 then
+        xPlayer.updateCoords(updatecoords) 
+    end
 end)
-
